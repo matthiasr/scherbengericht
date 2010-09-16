@@ -158,8 +158,9 @@ Zuständige Stellen sind verständigt." % (target))
                 else:
                     sendchannel("Abstimmung für %s anberaumt. Noch %d \
 Stimmen nötig für OP." % \
+                            (target, int(round(len(users) * VOTEQUOTA)) - 1))
                     lovevotes[target] = [user]
-                    lovetimes.append((target,user,time()))
+                    lovetimes.append((target, user, time()))
 
                 for nickname in lovevotes.keys():
                     if len(lovevotes[nickname]) >= \
