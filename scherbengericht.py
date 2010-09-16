@@ -32,7 +32,7 @@ REALNAME = "ὀστρακισμός"
 CHANNEL = "#twitter.de"
 VOTEQUOTA = 0.3
 WAITTIME = 2  # sec to time.sleep() after each message to avoid flood detection
-TIMEOUT = 30  # sec a vote is valid
+TIMEOUT = 180  # sec a vote is valid
 
 s = socket.socket()
 
