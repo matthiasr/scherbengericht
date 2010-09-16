@@ -188,7 +188,7 @@ Stimmen nötig für OP." % (user.partition("!")[0], target, \
         hatevotes[target] = filter(lambda u: u != user, hatevotes[target])
         sendchannel("Stimme von %s gegen %s ist abgelaufen. Noch %d \
 Stimmmen nötig für Bann." % (user.partition("!")[0], target, \
-                int(round(len(users) * VOTEQUOTA)) - len(lovevotes[target])))
+                int(round(len(users) * VOTEQUOTA)) - len(hatevotes[target])))
         if hatevotes[target] == []:
             del hatevotes[target]
         hatetimes = hatetimes[1:]
