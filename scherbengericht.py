@@ -86,8 +86,8 @@ while True:
         if (line[1] == "PRIVMSG") and (line[2] == CHANNEL) and \
                 (line[3][1:] == "!info"):
             sendchannel("Das Scherbengericht verbannt bzw. ernennt zum \
-König, wer von %d oder mehr der Anwesenden gewählt wird." % \
-                    (int(round(len(users) * VOTEQUOTA))))
+König, wer innerhalb von %d Sekunden von %d oder mehr der Anwesenden \
+gewählt wird." % (TIMEOUT, int(round(len(users) * VOTEQUOTA))))
 
         if (line[1] == "PRIVMSG") and (line[2] == CHANNEL) and \
                 (len(line) >= 5):
