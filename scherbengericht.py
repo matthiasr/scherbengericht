@@ -49,6 +49,7 @@ def sendchannel(channel, message):
 
 kick = lambda channel, user: s.send("KICK " + channel + " " + user + "\r\n")
 ban = lambda channel, user: s.send("MODE " + channel + " +b " + user + "!*@*\r\n")
+unban = lambda channel, user: s.send("MODE " + channel + " -b " + user + "!*@*\r\n")
 
 op = lambda channel, user: s.send("MODE " + channel + " +o " + user + "\r\n")
 deop = lambda channel, user: s.send("MODE " + channel + " -o " + user + "\r\n")
@@ -159,14 +160,14 @@ Stimmen nötig für Bann." % \
                                 len(lovevotes[channel][target])
                         if (difference > 0):
                             sendchannel(channel,"Stimme für %s gezählt. Noch %d \
-Stimmen nötig für OP." % (target, difference))
+Stimmen nötig für OP/Unban." % (target, difference))
                         else:
                             sendchannel(channel,"Stimme für %s gezählt. \
 Zuständige Stellen sind verständigt." % (target))
 
                 else:
                     sendchannel(channel,"Abstimmung für %s anberaumt. Noch %d \
-Stimmen nötig für OP." % \
+Stimmen nötig für OP/Unban." % \
                             (target, int(round(len(users[channel]) * VOTEQUOTA)) - 1))
                     lovevotes[channel][target] = [user]
                     lovetimes[channel].append((target, user, time()))
@@ -175,6 +176,7 @@ Stimmen nötig für OP." % \
                     if len(lovevotes[channel][nickname]) >= \
                             int(round(len(users[channel]) * VOTEQUOTA)):
                         op(channel,nickname)
+                        unban(channel,nickname)
                         del lovevotes[channel][nickname]
                         lovetimes[channel] = filter(lambda t: t[0] != nickname, \
                                 lovetimes[channel])
